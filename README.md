@@ -14,7 +14,7 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
 
 ![Bowling Scorecard](image.png)
 
-## Simplified 1Scoring Rules
+## Simplified Scoring Rules
 
 1. **Game Structure**
    - Game consists of 10 frames
