@@ -1,6 +1,7 @@
 # Bowling Score calculator
 
 Write a program that scores bowling.
+![Bowling Scorecard](image.png)
 
 ## Scoring Rules
  
@@ -33,4 +34,3 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
    - Maximum three rolls total
    - Bonus rolls only count for points (no additional bonus rolls)
    
-![Bowling Scorecard](image.png)
