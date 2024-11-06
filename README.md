@@ -1,7 +1,6 @@
 # Bowling Score calculator
 
 Write a program that scores bowling.
-![Bowling Scorecard](image.png)
 
 ## Scoring Rules
  
@@ -12,6 +11,8 @@ A spare is when the player knocks down all 10 pins in two tries.  The bonus for 
 A strike is when the player knocks down all 10 pins on his first try.  The bonus for that frame is the value of the next two balls rolled.  So in frame 5 below, the score is 10 plus bonuses of 0 and 1 (the number of pins knocked down on the next two rolls) for a total of 11.
 
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.  However no more than three balls can be rolled in tenth frame, so any strikes in the bonus rolls do not also earn bonus rolls.
+
+![Bowling Scorecard](image.png)
 
 1. **Game Structure**
    - Game consists of 10 frames
