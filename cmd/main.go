@@ -1,7 +1,7 @@
-// main scores Bowling Game.
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math/rand"
 )
@@ -12,50 +12,62 @@ const (
 )
 
 type Game struct {
-	ID     int
-	Frames []Frame
-	Score  int
+	ID     int     `json:"id"`
+	Frames []Frame `json:"frames"`
+	Score  int     `json:"score"`
 }
 
 type Frame struct {
-	ID       int
-	Rolls    []Roll
-	IsStrike bool
-	IsSpare  bool
-	Score    int
+	ID       int    `json:"id"`
+	Rolls    []Roll `json:"rolls"`
+	IsStrike bool   `json:"is_strike"`
+	IsSpare  bool   `json:"is_spare"`
+	Score    int    `json:"score"`
 }
 
 type Roll struct {
-	ID    int
-	Score int
+	ID    int `json:"id"`
+	Score int `json:"score"`
 }
 
-// AddGame adds a Bowling Game.
-func AddGame(gameIndex int) Game {
+// newGame creates a Bowling Game.
+func newGame(gameIndex int) Game {
 	return Game{
 		ID: gameIndex + 1,
 	}
 }
 
-// AddFrame adds a frame.
-func AddFrame(frameIndex int) Frame {
+// newFrame creates a frame.
+func newFrame(frameIndex int) Frame {
 	return Frame{
 		ID:    frameIndex + 1,
 		Score: 0,
 	}
 }
 
-// AddRoll adds a roll.
-func AddRoll(globalRollIndex, pins int) Roll {
+// newRoll creates a roll.
+func newRoll(globalRollIndex *int, pins int) Roll {
+	*globalRollIndex++
 	return Roll{
-		ID:    globalRollIndex + 1,
-		Score: RollScore(pins),
+		ID:    *globalRollIndex,
+		Score: rollScore(pins),
 	}
 }
 
-// RollScore returns roll score - random integer between 0 and 10.
-func RollScore(n int) int {
+// rollScore returns roll score - random integer between 0 and 10.
+func rollScore(n int) int {
 	return rand.Intn(n + 1)
+}
+
+// addRollToFrame adds roll to frame.
+func addRollToFrame(globalRollIndex *int, game *Game, frameIndex, pins int) Frame {
+	roll := newRoll(globalRollIndex, pins)
+
+	frame := game.Frames[frameIndex]
+	frame.Rolls = append(frame.Rolls, roll)
+	frame.Score += roll.Score
+	game.Frames[frameIndex] = frame
+	return frame
 }
 
 // calculateFinalScore calculates Bowling Game final score
@@ -85,77 +97,64 @@ func calculateFinalScore(game *Game) {
 		}
 
 		game.Score += frameScore
-		fmt.Printf("Frame %d: %d\n", i+1, frameScore)
+		// fmt.Printf("Frame %d: %d\n", i+1, frameScore)
 	}
-	fmt.Printf("Final Score: %d\n", game.Score)
+	// fmt.Printf("Final Score: %d\n", game.Score)
 }
 
-// main handles Bowling Game logic.
 func main() {
-	game := AddGame(0)
+	game := newGame(0)
 	globalRollIndex := 0
 
 	for frameIndex := 0; frameIndex < MaxFrames; frameIndex++ {
-		frame := AddFrame(frameIndex)
+		frame := newFrame(frameIndex)
 		game.Frames = append(game.Frames, frame)
 
 		// First roll
-		roll := AddRoll(globalRollIndex, MaxPins)
-		globalRollIndex++
-		frame.Rolls = append(frame.Rolls, roll)
-		frame.Score = roll.Score
-
+		frame = addRollToFrame(&globalRollIndex, &game, frameIndex, MaxPins)
 		// Strike handling
 		if frame.Score == MaxPins {
 			frame.IsStrike = true
+			game.Frames[frameIndex] = frame
 			if frameIndex < MaxFrames-1 {
 				game.Frames[frameIndex] = frame
 				continue
 			}
-			// For 10th frame strike, skip the normal second roll
-			// and go straight to bonus rolls
-			roll = AddRoll(globalRollIndex, MaxPins)
-			globalRollIndex++
-			frame.Rolls = append(frame.Rolls, roll)
-			frame.Score += roll.Score
+			// For 10th frame strike, skip the normal second roll and go straight to bonus rolls
+			frame = addRollToFrame(&globalRollIndex, &game, frameIndex, MaxPins)
 
 			// Second bonus roll
 			remainingPins := MaxPins
-			if roll.Score < MaxPins {
-				remainingPins = MaxPins - roll.Score
+			// Calculate remaining pins based on previous roll score
+			if frame.Rolls[len(frame.Rolls)-1].Score < MaxPins {
+				remainingPins = MaxPins - frame.Rolls[len(frame.Rolls)-1].Score
 			}
-			roll = AddRoll(globalRollIndex, remainingPins)
-			globalRollIndex++
-			frame.Rolls = append(frame.Rolls, roll)
-			frame.Score += roll.Score
-
-			game.Frames[frameIndex] = frame
+			frame = addRollToFrame(&globalRollIndex, &game, frameIndex, remainingPins)
 			continue
 		}
 
 		// Second roll (only reaches here if not a strike)
 		remainingPins := MaxPins - frame.Score
-		roll = AddRoll(globalRollIndex, remainingPins)
-		globalRollIndex++
-		frame.Rolls = append(frame.Rolls, roll)
-		frame.Score += roll.Score
+		frame = addRollToFrame(&globalRollIndex, &game, frameIndex, remainingPins)
 
 		// Spare handling
 		if frame.Score == MaxPins {
 			frame.IsSpare = true
+			game.Frames[frameIndex] = frame
 			if frameIndex == MaxFrames-1 {
 				// One bonus roll for spare in 10th frame
-				roll = AddRoll(globalRollIndex, MaxPins)
-				globalRollIndex++
-				frame.Rolls = append(frame.Rolls, roll)
-				frame.Score += roll.Score
+				frame = addRollToFrame(&globalRollIndex, &game, frameIndex, remainingPins)
 			}
 		}
-
-		game.Frames[frameIndex] = frame
 	}
-	for _, frame := range game.Frames {
-		fmt.Printf("frame: %v\n", frame)
-	}
+	// for _, frame := range game.Frames {
+	// 	fmt.Printf("frame: %v\n", frame)
+	// }
 	calculateFinalScore(&game)
+	// fmt.Printf("game: %v", game)
+	gameString, err := json.Marshal(game)
+	if err != nil {
+		fmt.Println("error")
+	}
+	fmt.Printf("game string: %v", string(gameString))
 }
