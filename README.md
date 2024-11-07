@@ -12,7 +12,7 @@ A strike is when the player knocks down all 10 pins on his first try.  The bonus
 
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.  However no more than three balls can be rolled in tenth frame, so any strikes in the bonus rolls do not also earn bonus rolls.
 
-![Bowling Scorecard](exercise.png)
+![Bowling Scorecard](assets/exercise.png)
 
 ## Simplified Scoring Rules
 
@@ -220,6 +220,6 @@ Random Bowling Game Score Generator API
 ```
 
 #### Sample JSON reponse visualisation
-![Random Bowling Game Score Generator sample](Random_Bowling_Game_Score_Generator_sample.png)
+![Random Bowling Game Score Generator sample](assets/random_bowling_game_score_generator_sample.png)
    
 ### Solution 2 - 
