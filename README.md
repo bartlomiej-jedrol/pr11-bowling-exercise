@@ -12,7 +12,7 @@ A strike is when the player knocks down all 10 pins on his first try.  The bonus
 
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.  However no more than three balls can be rolled in tenth frame, so any strikes in the bonus rolls do not also earn bonus rolls.
 
-![Bowling Scorecard](image.png)
+![Bowling Scorecard](exercise.png)
 
 ## Simplified Scoring Rules
 
@@ -39,17 +39,17 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
 
 ## Solutions
 
-I prepared two solutions for this exercise:
+### Solution 1 - Random Bowling Game Score Generator API
 
-1. Random Bowling Game Score Generator
+Random Bowling Game Score Generator API
 - The program handles a single bowling game
 - The program generates random roll scores between 1 and 10
 - The frame scores do not include bonuses for spare or strike as these are calculated in the final game score
 - The program is hosted on AWS Lambda and exposed as a public API through AWS API Gateway
-- The API returns the bowling game result in raw JSON format (sample JSON attached in the ...)
+- The API returns the bowling game result in raw JSON format (sample JSON included below)
 - The program is available at the API endpoint: https://hljvgios4m.execute-api.eu-central-1.amazonaws.com/dev
 
-Sample response:
+#### Sample JSON response
 ```JSON
 {
   "game_id": 1,
@@ -219,5 +219,7 @@ Sample response:
 } 
 ```
 
+#### Sample JSON reponse visualisation
 ![Random Bowling Game Score Generator sample](Random_Bowling_Game_Score_Generator_sample.png)
    
+### Solution 2 - 
