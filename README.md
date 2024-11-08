@@ -50,8 +50,8 @@ Random Bowling Game Score Generator API
 - The program is available at the API endpoint: https://hljvgios4m.execute-api.eu-central-1.amazonaws.com/dev
 - For better understanding of the API reponse you can visualise the JSON using: https://jsoncrack.com/editor
 - The source code for the solution is available in the following directories:
-   - bowling/bowling.go
-   - cmd/lambda/main.go
+   - [bowling/bowling.go](https://github.com/bartlomiej-jedrol/pr11-bowling-exercise/blob/7eb5beb8eade17751415ebcbf8608d29ab101ce3/bowling/bowling.go)
+   - [cmd/lambda/main.go](https://github.com/bartlomiej-jedrol/pr11-bowling-exercise/tree/7eb5beb8eade17751415ebcbf8608d29ab101ce3/cmd/lambda)
 
 #### Sample JSON response
 ```JSON
@@ -137,7 +137,7 @@ Bowling Game Score CLI
    - Mac
 - The programs for all operating systems are available at the following link: https://drive.google.com/drive/folders/1i-UowsTGLMsmk2rofHkrhMHEUTO_UYCu?usp=sharing
 - The source code for the solution is available in the following directory:
-   - cmd/cli/main.go
+   - [cmd/cli/main.go](https://github.com/bartlomiej-jedrol/pr11-bowling-exercise/blob/7eb5beb8eade17751415ebcbf8608d29ab101ce3/cmd/cli/main.go)
 
 #### Sample Bowling Game Score CLI game
 ![Bowling Game Score CLI](assets/bowling_game_score_cli_sample.png)
