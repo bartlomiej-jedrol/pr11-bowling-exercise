@@ -48,6 +48,7 @@ Random Bowling Game Score Generator API
 - The program is hosted on AWS Lambda and exposed as a public API through AWS API Gateway
 - The API returns the bowling game result in raw JSON format (sample JSON included below)
 - The program is available at the API endpoint: https://hljvgios4m.execute-api.eu-central-1.amazonaws.com/dev
+- For better understanding of the API reponse you can visualise the JSON using: https://jsoncrack.com/editor
 - The source code for the solution is available in the following directories:
    - bowling/bowling.go
    - cmd/lambda/main.go
