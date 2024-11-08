@@ -137,3 +137,6 @@ Random Bowling Game Score Generator CLI
 - The programs for all operating systems are available at the following link: 
 - The source code for the solution is available in the following directory:
    - cmd/cli/main.go
+
+#### Sample Bowling Game Score CLI game
+![Bowling Game Score CLI](assets/bowling_game_score_cli_sample.png)
