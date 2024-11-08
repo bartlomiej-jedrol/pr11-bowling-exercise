@@ -1,3 +1,4 @@
+// bowling handles the Bowling Game Score API game.
 package bowling
 
 import (
@@ -55,6 +56,7 @@ func getNextRollScore(game *Game, frameIndex int) int {
 	return game.Frames[frameIndex+1].Rolls[0]
 }
 
+// calculateFinalScore calcuates the final Bowling Game score.
 func calculateFinalScore(game *Game) {
 	game.Score = 0
 	for i := 0; i < len(game.Frames); i++ {
@@ -84,6 +86,7 @@ func marshalJSON(game Game) (string, error) {
 	return string(jsonData), nil
 }
 
+// PlayGame handles the Bowling Game Score API game.
 func PlayGame() (string, error) {
 	game := Game{}
 	// globalRollIndex := 0

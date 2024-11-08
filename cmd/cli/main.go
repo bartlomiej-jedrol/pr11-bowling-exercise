@@ -1,3 +1,4 @@
+// main handles the Bowling Game Score CLI game.
 package main
 
 import (
@@ -26,6 +27,7 @@ type Frame struct {
 	FinalScore int
 }
 
+// main handles the Bowling Game Score CLI game.
 func main() {
 	game := Game{}
 	reader := bufio.NewReader(os.Stdin)
@@ -83,7 +85,6 @@ func main() {
 
 		game.Frames = append(game.Frames, frame)
 
-		// Only calculate and display scores for valid frames
 		calculateCurrentScore(&game)
 		fmt.Printf("Current Score after frame %d: %d\n", frameIndex+1, game.Score)
 	}
@@ -93,6 +94,7 @@ func main() {
 	reader.ReadString('\n')
 }
 
+// calculateCurrentScore calcuates the current Bowling Game score.
 func calculateCurrentScore(game *Game) {
 	game.Score = 0
 	runningTotal := 0
@@ -110,7 +112,7 @@ func calculateCurrentScore(game *Game) {
 		}
 
 		runningTotal += frameScore
-		game.Frames[i].FinalScore = runningTotal // Store the running total
+		game.Frames[i].FinalScore = runningTotal
 		game.Score = runningTotal
 	}
 
@@ -127,6 +129,7 @@ func calculateCurrentScore(game *Game) {
 	}
 }
 
+// getNextTwoRollsScore returns the sum of the next two rolls after the given frame index.
 func getNextTwoRollsScore(game *Game, currentIndex int) int {
 	nextRolls := 0
 	if currentIndex+1 < len(game.Frames) {
@@ -138,6 +141,7 @@ func getNextTwoRollsScore(game *Game, currentIndex int) int {
 	return nextRolls
 }
 
+// getNextRollScore returns the score of the next roll after the given frame index.
 func getNextRollScore(game *Game, currentIndex int) int {
 	if currentIndex+1 < len(game.Frames) {
 		return game.Frames[currentIndex+1].Rolls[0]
