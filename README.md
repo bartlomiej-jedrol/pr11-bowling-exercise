@@ -43,7 +43,7 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
 
 Random Bowling Game Score Generator API
 - The program handles a single bowling game
-- The program generates **random roll scores** between 1 and 10
+- The program **generates random roll scores** between 1 and 10
 - The **frame score does not include bonuses** for spare or strike, as these are included only in the final game score
 - The program is hosted on AWS Lambda and exposed as a public API through AWS API Gateway
 - The API returns the bowling game result in raw JSON format (sample JSON included below)
@@ -129,7 +129,7 @@ Random Bowling Game Score Generator API
 
 Bowling Game Score CLI
 - The program handles a single bowling game
-- The program gets **input on rolls from the user**
+- The program **gets input on rolls from the user**
 - The **frame score includes bonuses** for spares and strikes
 - The program is built for the following operating systems:
    - Windows
