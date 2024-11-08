@@ -57,91 +57,61 @@ Random Bowling Game Score Generator API
 {
   "frames": [
     {
-      "rolls": [
-        6,
-        0
-      ],
+      "rolls": [6, 0],
       "is_strike": false,
       "is_spare": false,
       "frame_score": 6
     },
     {
-      "rolls": [
-        6,
-        1
-      ],
+      "rolls": [6, 1],
       "is_strike": false,
       "is_spare": false,
       "frame_score": 7
     },
     {
-      "rolls": [
-        9,
-        0
-      ],
+      "rolls": [9, 0],
       "is_strike": false,
       "is_spare": false,
       "frame_score": 9
     },
     {
-      "rolls": [
-        10
-      ],
+      "rolls": [10],
       "is_strike": true,
       "is_spare": false,
       "frame_score": 10
     },
     {
-      "rolls": [
-        8,
-        0
-      ],
+      "rolls": [8, 0],
       "is_strike": false,
       "is_spare": false,
       "frame_score": 8
     },
     {
-      "rolls": [
-        0,
-        5
-      ],
+      "rolls": [0, 5],
       "is_strike": false,
       "is_spare": false,
       "frame_score": 5
     },
     {
-      "rolls": [
-        6,
-        4
-      ],
+      "rolls": [6, 4],
       "is_strike": false,
       "is_spare": true,
       "frame_score": 10
     },
     {
-      "rolls": [
-        8,
-        2
-      ],
+      "rolls": [8, 2],
       "is_strike": false,
       "is_spare": true,
       "frame_score": 10
     },
     {
-      "rolls": [
-        5,
-        5
-      ],
+      "rolls": [5, 5],
       "is_strike": false,
       "is_spare": true,
       "frame_score": 10
     },
     {
-      "rolls": [
-        1,
-        9,
-        8
-      ],
+      "rolls": [1, 9, 8],
       "is_strike": false,
       "is_spare": true,
       "frame_score": 18
