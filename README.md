@@ -124,9 +124,9 @@ Random Bowling Game Score Generator API
 #### Sample JSON reponse visualisation
 ![Random Bowling Game Score Generator sample](assets/random_bowling_game_score_generator_sample.png)
    
-### Solution 2 - Random Bowling Game Score CLI
+### Solution 2 - Bowling Game Score CLI
 
-Random Bowling Game Score Generator CLI
+Bowling Game Score CLI
 - The program handles a single bowling game
 - The program gets input on rolls from the user
 - The frame score includes bonuses for spares and strikes
@@ -134,7 +134,7 @@ Random Bowling Game Score Generator CLI
    - Windows
    - Linux
    - Mac
-- The programs for all operating systems are available at the following link: 
+- The programs for all operating systems are available at the following link: https://drive.google.com/drive/folders/1i-UowsTGLMsmk2rofHkrhMHEUTO_UYCu?usp=sharing
 - The source code for the solution is available in the following directory:
    - cmd/cli/main.go
 
