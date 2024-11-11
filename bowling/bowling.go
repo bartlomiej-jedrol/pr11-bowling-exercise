@@ -25,13 +25,14 @@ type Frame struct {
 	Score    int   `json:"frame_score"`
 }
 
-// rollScore returns roll score - random integer between 0 and 10.
-func rollScore(n int) int {
+// rollScore holds a roll score function - returns random integer between 0 and 10.
+var rollScore = func(n int) int {
 	return rand.Intn(n + 1)
 }
 
 // getNextTwoRollsScore returns the sum of the next two rolls after the given frame index.
-func getNextTwoRollsScore(game *Game, frameIndex int) int {
+func GetNextTwoRollsScore(game *Game, frameIndex int) int {
+	// Return 0 if we're at the last frame
 	if frameIndex+1 >= len(game.Frames) {
 		return 0
 	}
@@ -49,7 +50,7 @@ func getNextTwoRollsScore(game *Game, frameIndex int) int {
 }
 
 // getNextRollScore returns the score of the next roll after the given frame index.
-func getNextRollScore(game *Game, frameIndex int) int {
+func GetNextRollScore(game *Game, frameIndex int) int {
 	if frameIndex+1 >= len(game.Frames) {
 		return 0
 	}
@@ -57,19 +58,19 @@ func getNextRollScore(game *Game, frameIndex int) int {
 }
 
 // calculateFinalScore calcuates the final Bowling Game score.
-func calculateFinalScore(game *Game) {
+func CalculateFinalScore(game *Game) {
 	game.Score = 0
 	for i := 0; i < len(game.Frames); i++ {
 		frameScore := game.Frames[i].Score
 
 		// Add strike bonus: next 2 rolls
 		if i < MaxFrames-1 && game.Frames[i].IsStrike {
-			frameScore += getNextTwoRollsScore(game, i)
+			frameScore += GetNextTwoRollsScore(game, i)
 		}
 
 		// Add spare bonus: next 1 roll
 		if i < MaxFrames-1 && game.Frames[i].IsSpare {
-			frameScore += getNextRollScore(game, i)
+			frameScore += GetNextRollScore(game, i)
 		}
 
 		game.Score += frameScore
@@ -145,7 +146,7 @@ func PlayGame() (string, error) {
 		fmt.Printf("frame: %v\n", frame)
 	}
 	fmt.Printf("game: %v", game)
-	calculateFinalScore(&game)
+	CalculateFinalScore(&game)
 
 	jsonString, err := marshalJSON(game)
 	return jsonString, err
