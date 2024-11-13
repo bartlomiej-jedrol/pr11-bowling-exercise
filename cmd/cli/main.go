@@ -38,6 +38,20 @@ func validateFrame(frame b.Frame, frameIndex int) (bool, string) {
 	return true, ""
 }
 
+// displayFrameScores displays frame-by-frame scores.
+func displayFrameScores(g *b.Game) {
+	fmt.Println("\nFrame-by-frame scores:")
+	for i, frame := range g.Frames {
+		fmt.Printf("Frame %d: %d", i+1, frame.Score)
+		if frame.IsStrike {
+			fmt.Print(" (Strike!)")
+		} else if frame.IsSpare {
+			fmt.Print(" (Spare!)")
+		}
+		fmt.Println()
+	}
+}
+
 // main handles the Bowling Game Score CLI game.
 func main() {
 	game := b.Game{}
@@ -89,18 +103,4 @@ func main() {
 	fmt.Printf("\nFinal Score: %d\n", game.Score)
 	fmt.Print("\nPress Enter to exit...")
 	reader.ReadString('\n')
-}
-
-// displayFrameScores displays frame-by-frame scores.
-func displayFrameScores(g *b.Game) {
-	fmt.Println("\nFrame-by-frame scores:")
-	for i, frame := range g.Frames {
-		fmt.Printf("Frame %d: %d", i+1, frame.Score)
-		if frame.IsStrike {
-			fmt.Print(" (Strike!)")
-		} else if frame.IsSpare {
-			fmt.Print(" (Spare!)")
-		}
-		fmt.Println()
-	}
 }
